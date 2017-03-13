@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="../static/materialize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+  <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+  <script type ="text/javascript"></script>
+</head>
+<body class="light-blue lighten-4">
+<nav>
+<div class="nav-wrapper grey darken-1">
+  <ul id="nav-mobile" class="left hide-on-med-and-down">
+    <li><a href="/rats/new">Make a Rat</a></li>
+  </ul>
+</div>
+</nav>
+<div class="row">
+  <div class="col s4 offset-s4">
+    <div class="card">
+      <h4>Your Rats</h4>
+      <hr>
+      <ul>
+          <% for (let rat = 0; rat < rats.length; rat++) {%>
+        <li>Name: <%= rats[rat].name%>
+          <a href="/rats/<%= rats[rat].id%>">Examine </a>
+          <a href="/rats/edit/<%= rats[rat].id%>">Edit </a>
+          <form action="/rats/destroy/<%= rats[rat].id%>" method="post">
+            <input type="submit" class="btn red" value="delete <%= rats[rat].name%>">
+          </form>
+        </li>
+          <% }%>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>
